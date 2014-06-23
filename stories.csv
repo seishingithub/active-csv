@@ -1,0 +1,65 @@
+Id,Story,Labels,Iteration,Iteration Start,Iteration End,Story Type,Estimate,Current State,Created at,Accepted at,Deadline,Requested By,Description,URL,Owned By,Task,Task Status
+73713390,dynamic attributes work for each column in the csv,"",1,"Jun 23, 2014","Jun 29, 2014",feature,,unstarted,"Jun 23, 2014",,,Jeff Dean,make the attribute readers spec pass,https://www.pivotaltracker.com/story/show/73713390,,respond_to_missing? should work,not completed
+73713142,dynamically generated attributes return nil if the field name is nil,"",1,"Jun 23, 2014","Jun 29, 2014",feature,,unstarted,"Jun 23, 2014",,,Jeff Dean,,https://www.pivotaltracker.com/story/show/73713142,,respond_to_missing? should work,not completed
+73713096,dynamically generated attributes normalize the headers into standard ruby names,"",1,"Jun 23, 2014","Jun 29, 2014",feature,,unstarted,"Jun 23, 2014",,,Jeff Dean,"```ruby
+class MyClass < ActiveCSV::Base
+end
+
+instance = MyClass.new(CSV::Row.new([""FIrst   NAme  ""], [""Joe""]))
+instance.first_name # => returns ""Joe""
+```",https://www.pivotaltracker.com/story/show/73713096,,respond_to_missing? should work,not completed
+73713304,dynamically generated attributes raise an error if the csv row doesn't have that column,"",1,"Jun 23, 2014","Jun 29, 2014",feature,,unstarted,"Jun 23, 2014",,,Jeff Dean,,https://www.pivotaltracker.com/story/show/73713304,,respond_to_missing? should work,not completed
+73712814,Dynamically generated attributes,"",1,"Jun 23, 2014","Jun 29, 2014",release,,unstarted,"Jun 23, 2014",,,Jeff Dean,,https://www.pivotaltracker.com/story/show/73712814,
+73712536,.all returns an array of objects that represent rows in the CSV,"",1,"Jun 23, 2014","Jun 29, 2014",feature,,unstarted,"Jun 23, 2014",,,Jeff Dean,"```ruby
+class MyClass < ActiveCSV::Base
+  self.file_path = ""/path/to/csv.csv""
+end
+
+MyClass.all # => an array of ActiveCSV objects
+```",https://www.pivotaltracker.com/story/show/73712536,
+73712692,.first returns the object that represents the first row of the csv,"",1,"Jun 23, 2014","Jun 29, 2014",feature,,unstarted,"Jun 23, 2014",,,Jeff Dean,,https://www.pivotaltracker.com/story/show/73712692,
+73712676,.last returns the object that represents the last row of the csv,"",1,"Jun 23, 2014","Jun 29, 2014",feature,,unstarted,"Jun 23, 2014",,,Jeff Dean,,https://www.pivotaltracker.com/story/show/73712676,
+73712636,".where takes a proc, and returns a filtered array of objects where the proc returns true","",1,"Jun 23, 2014","Jun 29, 2014",feature,,unstarted,"Jun 23, 2014",,,Jeff Dean,,https://www.pivotaltracker.com/story/show/73712636,
+73712730,.order can take a proc to order by,"",1,"Jun 23, 2014","Jun 29, 2014",feature,,unstarted,"Jun 23, 2014",,,Jeff Dean,,https://www.pivotaltracker.com/story/show/73712730,
+73712720,".order returns the csv rows, but ordered by the given symbol","",1,"Jun 23, 2014","Jun 29, 2014",feature,,unstarted,"Jun 23, 2014",,,Jeff Dean,,https://www.pivotaltracker.com/story/show/73712720,
+73713260,Class methods,"",1,"Jun 23, 2014","Jun 29, 2014",release,,unstarted,"Jun 23, 2014",,,Jeff Dean,,https://www.pivotaltracker.com/story/show/73713260,
+73713030,dynamically generated attributes can remove prefixes from column names,"",1,"Jun 23, 2014","Jun 29, 2014",feature,,unstarted,"Jun 23, 2014",,,Jeff Dean,"If a csv file has columns like `usr_first_name` and `usr_last_name`, developers can specify a prefix to be removed.
+
+```ruby
+class MyClass < ActiveCSV::Base
+  self.field_prefix = :usr_
+end
+
+instance = MyClass.new(CSV::Row.new([""usr_name"", ""usr_email""], [""jexample"", ""joe@example.com""]))
+instance.name # => returns ""jexample""
+```",https://www.pivotaltracker.com/story/show/73713030,
+73713408,ActiveCSV objects should be == if their ids match,"",1,"Jun 23, 2014","Jun 29, 2014",feature,,unstarted,"Jun 23, 2014",,,Jeff Dean,,https://www.pivotaltracker.com/story/show/73713408,
+73713216,"after a dynamically generated attribute is called once, it defines a method for that attribute","",1,"Jun 23, 2014","Jun 29, 2014",feature,,unstarted,"Jun 23, 2014",,,Jeff Dean,,https://www.pivotaltracker.com/story/show/73713216,
+73713436,ActiveCSV objects should be eql? if their ids match,"",1,"Jun 23, 2014","Jun 29, 2014",feature,,unstarted,"Jun 23, 2014",,,Jeff Dean,,https://www.pivotaltracker.com/story/show/73713436,
+73713484,write a nameable module,"",1,"Jun 23, 2014","Jun 29, 2014",feature,,unstarted,"Jun 23, 2014",,,Jeff Dean,"Write a module named Nameable that can be extended into a class.  Once extended, it should provide a method called `has_full_name`.  
+
+`has_full_name` should dynamically generates a method called `full_name`.
+
+`full_name` should return a string that concatenates all of the attributes passed to `has_full_name`.
+
+```ruby
+class Doctor < ActiveCSV::Base
+  extend Nameable
+  has_full_name :first, :last, :title
+end
+
+class Donor < ActiveCSV::Base
+  extend Nameable
+  has_full_name :prefix, :first_name, :last_name, :suffix
+end
+
+class Patient < ActiveCSV::Base
+  extend Nameable
+  has_full_name :prefix, :fname, :lname, :suffix
+end
+
+doctor.first # => ""Joe""
+doctor.last # => ""Example""
+doctor.title # => ""MD""
+doctor.full_name # => ""Joe Example MD""
+```",https://www.pivotaltracker.com/story/show/73713484,

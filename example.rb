@@ -5,7 +5,7 @@ class Widget
 
   def method_missing(method_name, *args, &block)
     if method_name == :foo
-      puts "yay!"
+      "yay!"
     else
       super
     end
@@ -22,5 +22,5 @@ class Widget
 end
 
 w = Widget.new
-
-p w.respond_to?(:foo) # false
+p w.foo
+p w.respond_to?(:foo)

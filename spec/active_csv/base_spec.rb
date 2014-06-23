@@ -5,10 +5,10 @@ require 'csv'
 
 describe ActiveCSV::Base do
 
-  #it "can be initialized with nothing" do
-  #  active_csv = ActiveCSV::Base.new
-  #  expect(active_csv).to be_kind_of(ActiveCSV::Base)
-  #end
+  it "can be initialized with nothing" do
+    active_csv = ActiveCSV::Base.new
+    expect(active_csv).to be_kind_of(ActiveCSV::Base)
+  end
 
   describe "attribute readers" do
     it "defines an attribute reader for every column in the csv" do
